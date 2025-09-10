@@ -1,0 +1,201 @@
+/* --- 1. SETUP & REFINED VARIABLES --- */
+:root {
+    --primary-blue: #6D6AFF;
+    --primary-red: #FF453A;
+    --background-color: #F5F7FA; /* Softer, off-white background */
+    --element-bg: #F0F2F5;       /* Elements have same bg to blend in */
+    --text-color-primary: #1c1e21;  /* Darker text for high contrast */
+    --text-color-secondary: #65676b;
+    --shadow-light: #ffffff;       /* White shadow for highlights */
+    --shadow-dark: #d3d6db;        /* Darker shadow for depth */
+    --border-radius: 12px;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color-primary);
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+/* --- 2. MAIN LAYOUT & LIFTED CONTAINER --- */
+.container {
+    width: 100%;
+    max-width: 680px;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 16px;
+    color: var(--text-color-secondary);
+    margin-top: 0;
+}
+
+/* --- 3. SEARCH SECTION (INSET STYLE) --- */
+.search-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.search-section label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-color-secondary);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+#search-input {
+    width: 100%;
+    padding: 16px 20px 16px 50px;
+    font-size: 16px;
+    border: none; /* Remove border, use shadow instead */
+    background-color: var(--element-bg);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    border: 1px solid #3a3a3a;
+    outline: none;
+    transition: box-shadow 0.2s;
+    /* Inset shadow to look pressed in */
+    box-shadow: inset 4px 4px 8px var(--shadow-dark),
+                inset -4px -4px 8px var(--shadow-light);
+}
+
+#search-input:focus {
+    box-shadow: inset 6px 6px 10px var(--shadow-dark),
+                inset -6px -6px 10px var(--shadow-light),
+                0 0 0 2px var(--primary-blue);
+}
+
+.search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    fill: var(--text-color-secondary);
+}
+
+/* --- 4. RESULTS SECTION (LIFTED CARDS) --- */
+.results-section {
+    margin-top: 24px;
+    min-height: 120px;
+}
+
+.placeholder-text {
+    color: var(--text-color-secondary);
+}
+
+.result-card {
+    background-color: var(--element-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 16px; /* Increased margin */
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    transition: box-shadow 0.2s, transform 0.2s;
+    /* Lifted shadow effect */
+    box-shadow: 4px 4px 8px var(--shadow-dark),
+                -4px -4px 8px var(--shadow-light);
+}
+
+.result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 12px var(--shadow-dark),
+                -6px -6px 12px var(--shadow-light);
+}
+
+.result-card.selected {
+    /* Pressed-in effect for selection */
+    box-shadow: inset 4px 4px 8px var(--shadow-dark),
+                inset -4px -4px 8px var(--shadow-light);
+    background-color: #E2E1FF;
+}
+
+/* ... (radio button circle styles remain the same) ... */
+.result-card.selected::after { content: ''; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; background-color: var(--primary-blue); border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px var(--primary-blue); }
+
+.term-primary { font-weight: 600; font-size: 16px; margin-bottom: 8px; }
+.term-secondary, .term-tertiary { font-size: 14px; color: #333; }
+
+
+/* --- 5. ACTION BUTTON (3D STYLE) --- */
+.action-section {
+    margin-top: 24px;
+    text-align: center;
+}
+
+#generate-fhir-btn {
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Active State */
+#generate-fhir-btn:not(:disabled) {
+    background-color: var(--primary-red);
+    color: white;
+    box-shadow: 4px 4px 8px #ff7b7366, -4px -4px 8px #ffffff80;
+}
+#generate-fhir-btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 12px #ff7b7380, -6px -6px 12px #ffffff;
+}
+#generate-fhir-btn:not(:disabled):active {
+    transform: translateY(1px);
+    box-shadow: inset 2px 2px 4px #d9362d, inset -2px -2px 4px #ffffff80;
+}
+
+
+/* Disabled State */
+#generate-fhir-btn:disabled {
+    background-color: #6D6AFF;
+    color: white;
+    cursor: not-allowed;
+    box-shadow: inset 2px 2px 4px var(--shadow-dark),
+                inset -2px -2px 4px var(--shadow-light);
+}
+
+/* --- 6. OUTPUT SECTION (DARK & INSET) --- */
+.output-section {
+    margin-top: 40px;
+    text-align: left;
+}
+
+#fhir-output {
+    background-color: #282c34; /* Dark background for code */
+    color: #abb2bf;           /* Softer white text for code */
+    border-radius: var(--border-radius);
+    padding: 20px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+    min-height: 200px;
+    border: 1px solid #3a3f4b;
+    /* Inset shadow for depth */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}

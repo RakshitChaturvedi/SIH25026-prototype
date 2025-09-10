@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAMAST-E to ICD-11 Service</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NAMAST-E to ICD-11 Services</h1>
+            <p>A Terminology mapping tool for AYUSH digital health records.</p>
+        </header>
+
+        <main>
+            <div class="search-section">
+                <label for="search-input">Search for diagnostics</label>
+                <div class="input-wrapper">
+                    <input type="text" id="search-input" placeholder="Search here...">
+                    <svg class="search-icon" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24"fill="currentColor"><path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path></svg>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <div id="results-container">
+                    <p class="placeholder-text">Search results will appear here.</p>
+                </div>
+            </div>
+
+            <div class="action-section">
+                <button id="generate-fhir-btn" disabled>Generate FHIR Resource</button>
+            </div>
+
+            <div class="output-section">
+                <h3>FHIR Resource JSON:</h3>
+                <pre id="fhir-output">Your generated FHIR JSON will appear here.</pre>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
